@@ -45,3 +45,6 @@ The Adam optimizer is used with the Mean Squared Error (MSE) loss function. The 
 ## Model Evaluation and Visualization
 
 Predictions are made on the test data. The normalized data is scaled back to the original range. The first 100 predicted and actual PM2.5 values are plotted for comparison. In the plot, the blue line represents the actual PM2.5 values, and the red line represents the predicted PM2.5 values by the model. This graph visually helps to analyze how well the model’s predictions align with the actual data.
+
+![PM2 5](https://github.com/user-attachments/assets/9f90d2e3-2bd2-4b29-ad68-4f1f6e0a36be)
+
