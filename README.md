@@ -1,8 +1,6 @@
 # LSTM_Pollution_Forecasting
 
-## Description
-
-This project implements a Long Short-Term Memory (LSTM) neural network model to forecast pollution levels (specifically PM2.5) based on multiple environmental variables such as temperature, humidity, pressure, wind speed, and more. The model is trained on historical pollution data and uses a multivariate time series approach to predict future pollution levels.
+This project focuses on forecasting pollution levels (PM2.5) using an LSTM (Long Short-Term Memory) model, based on multivariate environmental data. The goal is to predict future pollution levels by training the model on historical data, including temperature, humidity, pressure, wind speed, snow, and rain.
 
 ## Project Overview
 
@@ -15,9 +13,14 @@ This project implements a Long Short-Term Memory (LSTM) neural network model to 
   - `TensorFlow/Keras` for building and training the LSTM model
   - `Matplotlib` for data visualization
 
-## Installation
+**Data Preparation**
 
-To run this project, ensure you have the following Python libraries installed:
+The data is loaded from a CSV file (LSTM-Multivariate_pollution.csv), which contains historical pollution and weather-related data. MinMaxScaler is applied to scale the features of the dataset to a range between 0 and 1, improving model performance. The data is transformed into sequences with a sliding window of size 24. Each sequence consists of the previous 24 time steps (features) to predict the next pollution value.
 
-```bash
-pip install numpy pandas scikit-learn tensorflow matplotlib
+**Model Architecture**
+
+The LSTM layer is used with 64 units to process the sequence of environmental features. A Dense layer with 32 neurons and ReLU activation function is used to process the output of the LSTM layer. A Dense layer with a single output unit is used to predict the PM2.5 value.
+
+**Training**
+
+Adam optimizer with a learning rate of 0.001 is used to minimize the loss function. Mean Squared Error (MSE) is used as the loss function to evaluate the model. Mean Absolute Error (MAE) is chosen as a metric for model evaluation. The model is trained for 20 epochs with a batch size of 32.
