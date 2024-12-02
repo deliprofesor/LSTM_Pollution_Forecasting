@@ -4,25 +4,44 @@ This project focuses on forecasting pollution levels (PM2.5) using an LSTM (Long
 
 ![air_pollution](https://github.com/user-attachments/assets/aba07557-389c-4b05-b2a8-ff815f79fa6d)
 
-## Project Overview
+## Required Libraries
 
-- **Objective:** Predict PM2.5 levels using LSTM for multivariate time series forecasting.
-- **Data:** The dataset includes features such as pollution, dew point, temperature, pressure, wind speed, snow, and rain.
-- **Model:** LSTM (Long Short-Term Memory) model with one hidden layer and a dense output layer for regression.
-- **Libraries Used:** 
-  - `NumPy`, `Pandas` for data manipulation
-  - `scikit-learn` for MinMax scaling
-  - `TensorFlow/Keras` for building and training the LSTM model
-  - `Matplotlib` for data visualization
+At the beginning of the code, the necessary libraries for data processing and modeling are imported:
 
-**Data Preparation**
+- **NumPy** and **Pandas** for data handling,
+- **MinMaxScaler** for data scaling,
+- **LSTM**, **Dense**, and Adam for **Keras** model and optimization,
+- **Matplotlib** for visualization.
 
-The data is loaded from a CSV file (LSTM-Multivariate_pollution.csv), which contains historical pollution and weather-related data. MinMaxScaler is applied to scale the features of the dataset to a range between 0 and 1, improving model performance. The data is transformed into sequences with a sliding window of size 24. Each sequence consists of the previous 24 time steps (features) to predict the next pollution value.
+## Loading the Data
 
-**Model Architecture**
+The data is loaded from the LSTM-Multivariate_pollution.csv file, which contains various environmental factors related to pollution and weather. After loading the data, the column names and the first 5 rows are printed to get an overview of the dataset.
 
-The LSTM layer is used with 64 units to process the sequence of environmental features. A Dense layer with 32 neurons and ReLU activation function is used to process the output of the LSTM layer. A Dense layer with a single output unit is used to predict the PM2.5 value.
+## Data Preparation
 
-**Training**
+- **Feature Selection:** Environmental factors like pollution, dew, temp, press, wnd_spd, snow, and rain are selected as the features.
+- **Data Normalization:** The features are scaled between 0 and 1 using MinMaxScaler, which helps the model perform better.
+  
+## Creating Sequences
 
-Adam optimizer with a learning rate of 0.001 is used to minimize the loss function. Mean Squared Error (MSE) is used as the loss function to evaluate the model. Mean Absolute Error (MAE) is chosen as a metric for model evaluation. The model is trained for 20 epochs with a batch size of 32.
+- **Lag Features (Sequence Creation):** For time series data, lag features are created by using the previous time steps (24 time steps) to predict the next pollution value.
+  
+## Splitting the Data
+
+The data is split into training and test datasets, with 80% used for training and 20% for testing. The training data is used to train the model, and the test data is used to evaluate its performance.
+
+## Model Architecture
+
+The model is built using LSTM and Dense layers:
+
+- **LSTM Layer:** This layer has 64 units and processes the time series data.
+- **Dense Layer:** This layer has 32 neurons and processes the data from the LSTM layer.
+- **Output Layer:** A single neuron is used in the output layer to predict the PM2.5 value.
+  
+## Model Training
+
+The Adam optimizer is used with the Mean Squared Error (MSE) loss function. The model is trained for 20 epochs with a batch size of 32. During training, validation data is used to track the model’s performance.
+
+## Model Evaluation and Visualization
+
+Predictions are made on the test data. The normalized data is scaled back to the original range. The first 100 predicted and actual PM2.5 values are plotted for comparison. In the plot, the blue line represents the actual PM2.5 values, and the red line represents the predicted PM2.5 values by the model. This graph visually helps to analyze how well the model’s predictions align with the actual data.
