@@ -2,6 +2,8 @@
 
 This project focuses on forecasting pollution levels (PM2.5) using an LSTM (Long Short-Term Memory) model, based on multivariate environmental data. The goal is to predict future pollution levels by training the model on historical data, including temperature, humidity, pressure, wind speed, snow, and rain.
 
+![air_pollution](https://github.com/user-attachments/assets/aba07557-389c-4b05-b2a8-ff815f79fa6d)
+
 ## Project Overview
 
 - **Objective:** Predict PM2.5 levels using LSTM for multivariate time series forecasting.
